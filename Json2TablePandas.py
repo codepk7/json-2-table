@@ -3,7 +3,7 @@ from pandas.core.indexes.base import Index
 import sys
 from pathlib import Path, PurePath
 
-#Check if all the argument are passed
+#Check if all the arguments are passed
 if len(sys.argv) != 3:
     sys.exit("Usage: python3 [path to your program] [input file path] [output file path]")
 
@@ -16,7 +16,7 @@ output_dir = output_file_name.parent
 if not Path(json_file_name).is_file():
     sys.exit("Input Json file doesn't exist")
 
-# #Check if the output directory exists, else create it
+#Check if the output directory exists, else create it
 if not output_dir.is_dir() & output_dir.exists():
     output_dir.mkdir()
     print("Created output directory: ",str(output_dir))
@@ -47,6 +47,6 @@ result = pd.merge(result_batter,result_toppings, on=['Id','Name','Type'])
 result = result.reindex(columns=['Id', 'Type', 'Name', 'Batter', 'Topping'])
 result = result.set_index(['Id'])
 
-#Output to the dataframe to csv file
+#Output the dataframe to csv file
 result.to_csv(output_file_name)
 print("Output at: ", str(Path(output_file_name).resolve()))
